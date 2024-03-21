@@ -1,9 +1,18 @@
 import './App.css';
+import { Button } from 'antd';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 const App = () => {
   return (
     <div className="App">
-      <h1>EMARH Resume Builder</h1>
+      <Router>
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
