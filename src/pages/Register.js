@@ -1,16 +1,24 @@
 import React from 'react';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import '../resources/authentication.css';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const onFinish = (values) => {
-  console.log('Success:', values);
-};
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
 
 const Register = () => {
+  const onFinish = async (values) => {
+    // console.log('Success:', values);
+    try {
+      await axios('/api/v1/users/register', values);
+      message.success('Registration successful');
+    } catch(error) {
+      message.error('Registration failed');
+    }
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <div className='auth-parent'>
       <Form name="basic" labelCol={{ span: 8 }}
